@@ -1,0 +1,48 @@
+\documentclass[spanish, fleqn]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,txfonts}
+\usepackage{mathrsfs}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage{fourier}
+\usepackage[top = 2.5cm, bottom = 2cm, left = 2cm, right = 2cm]{geometry}
+\usepackage{graphicx}
+
+
+
+
+\title{Resolución de ecuaciones de Euler-Lagrange por métodos espectrales}
+\author{Martín Villanueva}
+\date{29 de Noviembre de 2016}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Idea de proyecto}
+
+
+La propuesta de proyecto consiste en la resolución de ecuaciones de \textit{Euler-Lagrange} provenientes de la formulación de cálculo variacional, por medio de métodos espectrales.  
+
+
+La idea es abordar las distintas ecuaciones \textit{EL} que aparecen en los distintos problemas (\textit{Image denoising, Image restoration, Image segmentation} entre otras) desde la forma más general posible.
+
+
+Si denotamos los datos o función de entrada $f$, $E$ el funcional de energía que contiene las restricciones del problema y $\hat{u}$ la función  que minimiza $E(u)$, entonces la formulación variacional puede ser planteada como:
+\begin{align*}
+f &: \Omega \subset \mathbb{R}^n \rightarrow \mathbb{R} \\
+\hat{u} &= \text{argmin} \ E(u) :=  \text{data}(u,f) + \alpha \ \text{smoothness}(u) + \beta \ \text{custom}(u),
+\end{align*}
+donde $\text{data}(\cdot)$ es la función que fuerza la similitud, $\text{smoothness}(\cdot)$ la función que fuerza la \textit{suavidad} de la función y $\text{custom}(\cdot)$ contiene las restricciones particulares del problema. Dada la formulación variacional, siempre es posible pasar a la formulación en ecuaciones diferenciales parciales (PDE), que consiste en encontrar una solución a $\mathbb{D}(u, \nabla u, \Delta u, \ldots)=0$, en donde el operador $\mathbb{D}$ computa la ecuación EL. Introduciendo una variable temporal, tal problema puede formularse como:
+\begin{align*}
+\partial_t u &= \mathbb{D}(u, \nabla u, \Delta u) \\
+u(\cdot,0) &= f(\cdot) \ \ \ \ \in \Omega.
+\end{align*}
+Las derivadas espaciales en $\mathbb{D}(u, \nabla u, \Delta u)$ pueden ser aproximadas por matrices de diferenciación espectrales, y por lo tanto resolver el sistema dinámico debiera volverse computacionalmente eficiente.
+\newline
+
+
+Dentro del marco del proyecto, se propone también realizar un análisis comparativo con técnicas estándar en la resolución de estas PDE, tales como diferencias finitas y/o elementos finitos.
+\end{document}
